@@ -366,7 +366,14 @@
     'hero.h1': "Саламыз. Көрсетеміз. Жауап береміз.",
     'hero.lead': "Бүкіл Қазақстан бойынша бас мердігер. Смета мен жұмыс барысы — ашық.",
     'hero.c1': "Қазақстан және одан әрі",
-    'hero.c3': "Жобалаудан пайдалануға беруге дейін"
+    'hero.c3': "Жобалаудан пайдалануға беруге дейін",
+    'dam.period': "Екі кезек, 2024 жылдан бастап. <span class=\"ph\">[ПОДТВЕРДИТЬ: мәртебесі — аяқталды / жүріп жатыр]</span>",
+    'mk.off': "Белгілер: өшірулі",
+    'mk.on': "Белгілер: қосулы",
+    'cs1t': "Осындай сметаны өз объектіңіз бойынша көргіңіз келе ме?",
+    'cs1b': "WhatsApp-та талқылау",
+    'cs2t': "Ұқсас міндет бар ма? Бізге айтыңыз.",
+    'cs2b': "WhatsApp-қа жазу"
   };
 
   var WA_PREFIX = {
@@ -382,6 +389,7 @@
   arias.forEach(function (el) { RU_ARIA[el.getAttribute('data-i18n-aria')] = el.getAttribute('aria-label'); });
   els.forEach(function (el) { RU[el.getAttribute('data-i18n')] = el.innerHTML; });
   alts.forEach(function (el) { RU_ALT[el.getAttribute('data-i18n-alt')] = el.getAttribute('alt'); });
+  RU['mk.on'] = 'Пометки: вкл';
 
   var TITLES = {
     ru: 'Филнет-Казахстан — генподрядчик по всему Казахстану',
@@ -408,6 +416,7 @@
   var WA = {
     ru: {
       gen: 'Здравствуйте! Пишу с сайта filnet.kz. Хочу обсудить строительство объекта.',
+      ob: 'Здравствуйте! Пишу с сайта filnet.kz. Хочу увидеть, как выглядит смета Open Book по моему объекту.',
       dam: 'Здравствуйте! Увидел на сайте проект по дамбе. Планирую похожий объект, хочу обсудить.',
       cech: 'Здравствуйте! Увидел на сайте мебельный цех. Планирую похожий объект, хочу обсудить.',
       check: 'Здравствуйте! Пришлите, пожалуйста, чек-лист документов для старта стройки.',
@@ -415,6 +424,7 @@
     },
     kk: {
       gen: 'Сәлеметсіз бе! filnet.kz сайтынан жазып отырмын. Объект салуды талқылағым келеді.',
+      ob: 'Сәлеметсіз бе! filnet.kz сайтынан жазып отырмын. Open Book сметасы менің объектімде қалай көрінетінін көргім келеді.',
       dam: 'Сәлеметсіз бе! Сайттан дамба жобасын көрдім. Ұқсас объект жоспарлап отырмын, талқылағым келеді.',
       cech: 'Сәлеметсіз бе! Сайттан жиһаз цехын көрдім. Ұқсас объект жоспарлап отырмын, талқылағым келеді.',
       check: 'Сәлеметсіз бе! Құрылысты бастауға қажет құжаттар тізімін жіберіңізші.',
@@ -653,5 +663,22 @@
   if (prog) {
     window.addEventListener('scroll', function () { if (!ptick) { ptick = true; requestAnimationFrame(pUpd); } }, { passive: true });
     window.addEventListener('resize', pUpd); pUpd();
+  }
+
+  // режим пометок: по умолчанию сайт чистый, плашки [ПОДТВЕРДИТЬ] скрыты
+  var mb = document.getElementById('marks-btn');
+  function setMarks(on) {
+    document.body.classList.toggle('edit', on);
+    mb.setAttribute('aria-pressed', on ? 'true' : 'false');
+    mb.firstElementChild.setAttribute('data-i18n', on ? 'mk.on' : 'mk.off');
+    var k = on ? 'mk.on' : 'mk.off';
+    mb.firstElementChild.textContent = lang === 'kk' ? KK[k] : (on ? 'Пометки: вкл' : 'Пометки: выкл');
+    try { localStorage.setItem('filnet-marks', on ? '1' : '0'); } catch (e) {}
+  }
+  if (mb) {
+    mb.addEventListener('click', function () { setMarks(!document.body.classList.contains('edit')); });
+    var startOn = false;
+    try { startOn = /[?&]edit=1/.test(location.search) || localStorage.getItem('filnet-marks') === '1'; } catch (e) {}
+    setMarks(startOn);
   }
 })();

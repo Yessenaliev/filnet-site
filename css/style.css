@@ -586,3 +586,17 @@ body.menu-open .sticky-cta{transform:translateY(120%)}
 }
 @media(min-width:980px) and (max-height:760px){.st-det p{padding:6px 0;font-size:14px}.bld .st-list li.is-on b{font-size:20px;margin-bottom:6px}}
 @media(max-width:719px){.bld-fig{max-height:30svh}.bld-panel{padding-top:10px}}
+
+/* ===== v9: clean view by default, CTA strips, shorter scroll ===== */
+body:not(.edit) .ph,body:not(.edit) .ph-line,body:not(.edit) .creds{display:none}
+.marks-btn{position:fixed;left:12px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:60;font:600 11px var(--f-t);color:var(--mut);background:rgba(22,14,36,.85);border:1px solid var(--line);border-radius:999px;padding:8px 12px;cursor:pointer;opacity:.7}
+.marks-btn:hover,.marks-btn[aria-pressed="true"]{opacity:1;color:#fff;border-color:#8B5CF6}
+@media(min-width:980px){.marks-btn{bottom:16px}}
+.cta-strip{background:#7C3AED;color:#fff}
+.cta-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding-block:22px}
+.cta-in p{font:600 clamp(16px,2.4vw,22px)/1.25 var(--f-h);max-width:32em;text-wrap:balance}
+.cta-strip .btn-or{background:#fff;color:#4C1D95}
+.cta-strip .btn-or:hover{background:#F5F2FA}
+.bld-track{height:calc(6*52svh + 100svh)}
+@media(prefers-reduced-motion:reduce){.bld-track{height:auto}}
+@media(orientation:landscape) and (max-height:520px){.bld-track{height:auto}}
