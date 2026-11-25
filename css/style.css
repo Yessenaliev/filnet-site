@@ -4,8 +4,8 @@
   --txt:#F5F2FA; --mut:#B9AFD0; --line:rgba(245,242,250,.14);
   --ink:#160E24; --ink-mut:#5B4F75;
   --r:14px;
-  --f-h:'Unbounded','Manrope',system-ui,sans-serif;
-  --f-t:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-h:'Unbounded','Montserrat','Manrope','Inter',system-ui,sans-serif;
+  --f-t:'Manrope','Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
