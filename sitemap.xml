@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://yessenaliev.github.io/filnet-site/</loc></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url><loc>https://yessenaliev.github.io/filnet-site/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://yessenaliev.github.io/filnet-site/"/><xhtml:link rel="alternate" hreflang="kk" href="https://yessenaliev.github.io/filnet-site/kk/"/></url>
+<url><loc>https://yessenaliev.github.io/filnet-site/kk/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://yessenaliev.github.io/filnet-site/"/><xhtml:link rel="alternate" hreflang="kk" href="https://yessenaliev.github.io/filnet-site/kk/"/></url>
+</urlset>

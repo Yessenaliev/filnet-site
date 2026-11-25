@@ -381,7 +381,12 @@
     'pt.m1': "Петропавл",
     'pt.k2': "Өндірістік ғимарат",
     'pt.t2': "Жиһаз цехы",
-    'pt.m2': "Қызылсуат"
+    'pt.m2': "Қызылсуат",
+    'hero.lead': "Бүкіл Қазақстан бойынша зауыттарға, цехтарға және ғимараттарға арналған бас мердігерлік. Смета мен жұмыс барысы — ашық.",
+    'cta.wa': "Объектіні талқылау",
+    'fm.h': "Қысқа өтінім",
+    'fm.priv': "Деректерді қалай өңдейміз",
+    'ft.priv': "Құпиялылық"
   };
 
   var WA_PREFIX = {
@@ -470,19 +475,19 @@
     document.querySelectorAll('[data-set-lang]').forEach(function (b) {
       b.classList.toggle('is-on', b.getAttribute('data-set-lang') === lang);
     });
-    try { localStorage.setItem('filnet-lang', lang); } catch (e) {}
   }
 
+  // язык = отдельный адрес: / (русский) и /kk/ (казахский); кнопки переходят на нужную страницу
+  function pageBase() { return location.pathname.replace(/kk\/(index\.html)?$/, '').replace(/index\.html$/, ''); }
   document.querySelectorAll('[data-set-lang]').forEach(function (b) {
-    b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-set-lang');
+      if (t === lang) return;
+      location.href = pageBase() + (t === 'kk' ? 'kk/' : '');
+    });
   });
-
-  // начальный язык: ?lang=kk -> сохранённый -> русский
-  var init = 'ru';
-  try {
-    var q = new URLSearchParams(location.search).get('lang');
-    init = q || localStorage.getItem('filnet-lang') || 'ru';
-  } catch (e) {}
+  var init = document.documentElement.lang === 'kk' ? 'kk' : 'ru';
+  try { if (init === 'ru' && /[?&]lang=kk/.test(location.search)) { location.replace(pageBase() + 'kk/'); } } catch (e) {}
   if (init === 'kk') setLang('kk'); else applyWa();
 
   // меню
@@ -517,8 +522,8 @@
     if (sit) lines.push(p.site + ': ' + val(sit));
     if (st) lines.push(p.start + ': ' + val(st));
     if (f.task.value.trim()) lines.push(p.task + ': ' + f.task.value.trim());
-    if (f.name.value.trim()) lines.push(p.name + ': ' + f.name.value.trim());
-    if (f.phone.value.trim()) lines.push(p.phone + ': ' + f.phone.value.trim());
+    if (f.name && f.name.value.trim()) lines.push(p.name + ': ' + f.name.value.trim());
+    if (f.phone && f.phone.value.trim()) lines.push(p.phone + ': ' + f.phone.value.trim());
     window.open('https://wa.me/77075226588?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
   });
 
@@ -711,6 +716,7 @@
     mb.addEventListener('click', function () { setMarks(!document.body.classList.contains('edit')); });
     var startOn = false;
     try { startOn = /[?&]edit=1/.test(location.search) || localStorage.getItem('filnet-marks') === '1'; } catch (e) {}
+    if (startOn) mb.hidden = false;
     setMarks(startOn);
   }
 })();

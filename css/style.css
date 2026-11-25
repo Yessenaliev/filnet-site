@@ -618,3 +618,6 @@ body:not(.edit) .ph,body:not(.edit) .ph-line,body:not(.edit) .creds{display:none
 .pt-cap em{font-style:normal;color:#EDE8F8;font-size:14px}
 @media(hover:hover){.proj-tile:hover img{transform:scale(1.04)}}
 @media(min-width:720px){.proj-tiles{grid-template-columns:1fr 1fr}.proj-tile{aspect-ratio:4/3}}
+
+.priv-link{font-size:12px;color:var(--mut);text-decoration:underline}
+.ftr-links{display:flex;gap:18px;flex-wrap:wrap}

@@ -1,3 +1,3 @@
+# Draft: closed from indexing until the final domain and confirmations.
 User-agent: *
-Allow: /
-Sitemap: https://yessenaliev.github.io/filnet-site/sitemap.xml
+Disallow: /
