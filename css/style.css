@@ -600,3 +600,21 @@ body:not(.edit) .ph,body:not(.edit) .ph-line,body:not(.edit) .creds{display:none
 .bld-track{height:calc(6*52svh + 100svh)}
 @media(prefers-reduced-motion:reduce){.bld-track{height:auto}}
 @media(orientation:landscape) and (max-height:520px){.bld-track{height:auto}}
+
+/* ===== v11: video scrubbed by scroll ===== */
+.scrub-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.scrub-on .scrub-video{opacity:1}
+.scrub-on .bld-fig img{opacity:0!important}
+.scrub-on .bld-hud{z-index:3}
+
+/* ===== v12: project tiles ===== */
+.proj-tiles{display:grid;gap:12px}
+.proj-tile{position:relative;display:block;aspect-ratio:16/10;border-radius:var(--r);overflow:hidden;text-decoration:none;color:#fff;background:var(--bg3);border:1px solid var(--line)}
+.proj-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.proj-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(22,14,36,.92) 0%,rgba(22,14,36,.25) 55%,rgba(22,14,36,0) 100%)}
+.pt-cap{position:absolute;z-index:2;left:18px;right:18px;bottom:16px;display:grid;gap:2px}
+.pt-cap small{font:700 10px var(--f-t);letter-spacing:.14em;text-transform:uppercase;color:#C4B5FD}
+.pt-cap b{font:600 clamp(18px,3.4vw,28px)/1.15 var(--f-h)}
+.pt-cap em{font-style:normal;color:#EDE8F8;font-size:14px}
+@media(hover:hover){.proj-tile:hover img{transform:scale(1.04)}}
+@media(min-width:720px){.proj-tiles{grid-template-columns:1fr 1fr}.proj-tile{aspect-ratio:4/3}}

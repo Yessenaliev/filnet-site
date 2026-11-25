@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yessenaliev.github.io/filnet-site/sitemap.xml

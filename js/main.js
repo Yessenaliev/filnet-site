@@ -373,7 +373,15 @@
     'cs1t': "Осындай сметаны өз объектіңіз бойынша көргіңіз келе ме?",
     'cs1b': "WhatsApp-та талқылау",
     'cs2t': "Ұқсас міндет бар ма? Бізге айтыңыз.",
-    'cs2b': "WhatsApp-қа жазу"
+    'cs2b': "WhatsApp-қа жазу",
+    'pt.a1': "«Биопруд» жинақтағыш тоғанының дамбасы",
+    'pt.a2': "Жиһаз цехы, Қызылсуат",
+    'pt.k1': "Гидротехникалық құрылыс",
+    'pt.t1': "«Биопруд» дамбасы",
+    'pt.m1': "Петропавл",
+    'pt.k2': "Өндірістік ғимарат",
+    'pt.t2': "Жиһаз цехы",
+    'pt.m2': "Қызылсуат"
   };
 
   var WA_PREFIX = {
@@ -520,7 +528,26 @@
     var bTrack = bSec.querySelector('.bld-track'), bStick = bSec.querySelector('.bld-stick');
     var bImgs = bSec.querySelectorAll('.bld-fig img'), bItems = bSec.querySelectorAll('.st-list li');
     var bBar = bSec.querySelector('.st-bar i'), bCta = document.getElementById('bld-cta');
-    var bn = bImgs.length, bcur = -1, btick = false;
+    var bn = bImgs.length, bcur = -1, btick = false, bP = 0;
+    // видео-сцена: кадры «прокручиваются» вместе со скроллом; статичные кадры остаются запасным вариантом
+    var sv = document.getElementById('scrub-video'), scrubOn = false;
+    var svConn = navigator.connection || {};
+    var svOk = sv && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !svConn.saveData && !/(^|-)[23]g$/.test(svConn.effectiveType || '');
+    if (svOk && 'IntersectionObserver' in window) {
+      var svIo = new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting) return;
+        svIo.disconnect();
+        sv.addEventListener('loadeddata', function () {
+          scrubOn = true;
+          bSec.classList.add('scrub-on');
+          sv.currentTime = bP * (sv.duration - 0.05);
+        }, { once: true });
+        sv.preload = 'auto';
+        sv.src = sv.getAttribute('data-src');
+        sv.load();
+      }, { rootMargin: '900px 0px' });
+      svIo.observe(bSec);
+    }
     function bUpd() {
       btick = false;
       var r = bTrack.getBoundingClientRect(), topOff = 64;
@@ -530,6 +557,11 @@
       bBar.style.transform = 'scaleX(' + p.toFixed(3) + ')';
       var lp = Math.min(1, Math.max(0, p * bn - i));
       if (bImgs[i]) bImgs[i].style.setProperty('--lp', lp.toFixed(3));
+      bP = p;
+      if (scrubOn && sv.duration) {
+        var tt = p * (sv.duration - 0.05);
+        if (Math.abs(sv.currentTime - tt) > 0.02) { if (sv.fastSeek) sv.fastSeek(tt); else sv.currentTime = tt; }
+      }
       if (i !== bcur) {
         bcur = i;
         bImgs.forEach(function (im, k) { im.classList.toggle('is-on', k === i); });
