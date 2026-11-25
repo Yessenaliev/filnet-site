@@ -629,3 +629,7 @@ body:not(.edit) .ph,body:not(.edit) .ph-line,body:not(.edit) .creds{display:none
 .scene-skip{position:absolute;right:30px;top:30px;pointer-events:auto;font:700 12px var(--f-t);letter-spacing:.06em;color:#fff;text-decoration:none;background:rgba(22,14,36,.78);border:1px solid rgba(255,255,255,.28);padding:8px 12px;backdrop-filter:blur(6px);z-index:4}
 .scene-skip:hover{border-color:#8B5CF6}
 @media(max-width:719px){.scene-skip{right:20px;top:20px;padding:6px 9px;font-size:11px}}
+
+.avatar.has-photo{padding:0;overflow:hidden;background:var(--bg3)}
+.avatar.has-photo img{width:100%;height:100%;object-fit:cover}
+.avatar{flex:none}

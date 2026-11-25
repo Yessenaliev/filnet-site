@@ -387,7 +387,9 @@
     'fm.h': "Қысқа өтінім",
     'fm.priv': "Деректерді қалай өңдейміз",
     'ft.priv': "Құпиялылық",
-    'sk.t': "Жобаларға өту ↓"
+    'sk.t': "Жобаларға өту ↓",
+    'ct.addrv': "Астана, Есіл ауданы, Жұлдыз к-сі, 4 (Bi Village Comfort-3)",
+    'ct.hoursv': "Дс–Жм 09:00–18:00, Сб–Жс демалыс"
   };
 
   var WA_PREFIX = {
@@ -720,4 +722,19 @@
     if (startOn) mb.hidden = false;
     setMarks(startOn);
   }
+
+  // фото руководителя: положите файл assets/team/director.jpg, и вместо инициалов появится фото
+  (function () {
+    var av = document.querySelector('.person .avatar');
+    if (!av) return;
+    var base = document.querySelector('link[rel="stylesheet"][href*="style.css"]').getAttribute('href').replace(/css\/style\.css.*$/, '');
+    var im = new Image();
+    im.onload = function () {
+      av.textContent = '';
+      av.classList.add('has-photo');
+      im.alt = document.documentElement.lang === 'kk' ? 'Жомарт Карсакбаев' : 'Жомарт Карсакбаев';
+      av.appendChild(im);
+    };
+    im.src = base + 'assets/team/director.jpg';
+  })();
 })();
