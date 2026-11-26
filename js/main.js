@@ -482,17 +482,17 @@
     });
   }
 
-  // язык = отдельный адрес: / (русский) и /kk/ (казахский); кнопки переходят на нужную страницу
-  function pageBase() { return location.pathname.replace(/kk\/(index\.html)?$/, '').replace(/index\.html$/, ''); }
+  // язык = отдельный адрес: / (казахский, основной) и /ru/ (русский); кнопки переходят на нужную страницу
+  function pageBase() { return location.pathname.replace(/(ru|kk)\/(index\.html)?$/, '').replace(/index\.html$/, ''); }
   document.querySelectorAll('[data-set-lang]').forEach(function (b) {
     b.addEventListener('click', function () {
       var t = b.getAttribute('data-set-lang');
       if (t === lang) return;
-      location.href = pageBase() + (t === 'kk' ? 'kk/' : '');
+      location.href = pageBase() + (t === 'ru' ? 'ru/' : '');
     });
   });
   var init = document.documentElement.lang === 'kk' ? 'kk' : 'ru';
-  try { if (init === 'ru' && /[?&]lang=kk/.test(location.search)) { location.replace(pageBase() + 'kk/'); } } catch (e) {}
+  try { if (init === 'kk' && /[?&]lang=ru/.test(location.search)) { location.replace(pageBase() + 'ru/'); } } catch (e) {}
   if (init === 'kk') setLang('kk'); else applyWa();
 
   // меню
