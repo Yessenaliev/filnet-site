@@ -404,7 +404,9 @@
     'xp.2a': "International Steppe School of Astana by NIS: мектепті күрделі жөндеу, интерьерлер",
     'xp.3t': "Ет өңдеу зауыты",
     'xp.3m': "Индустриялық парк · дроннан көрініс",
-    'xp.3a': "Индустриялық парктегі ет өңдеу зауыты, дроннан көрініс"
+    'xp.3a': "Индустриялық парктегі ет өңдеу зауыты, дроннан көрініс",
+    'xp.4t': "Coventry University Kazakhstan",
+    'xp.4a': "Coventry University Kazakhstan: қасбетті монтаждау"
   };
 
   var WA_PREFIX = {
