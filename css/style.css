@@ -633,3 +633,8 @@ body:not(.edit) .ph,body:not(.edit) .ph-line,body:not(.edit) .creds{display:none
 .avatar.has-photo{padding:0;overflow:hidden;background:var(--bg3)}
 .avatar.has-photo img{width:100%;height:100%;object-fit:cover}
 .avatar{flex:none}
+
+/* v25: square project tiles so the whole workshop building fits */
+.proj-tile{aspect-ratio:1/1}
+@media(min-width:720px){.proj-tile{aspect-ratio:1/1}}
+.proj-tile::after{background:linear-gradient(0deg,rgba(22,14,36,.88) 0%,rgba(22,14,36,.55) 18%,rgba(22,14,36,0) 36%)}
