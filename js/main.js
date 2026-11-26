@@ -401,7 +401,10 @@
     'xp.6a': "Оқушылар сарайы, Көкшетау қ.: интерьерлер",
     'xp.2t': "International Steppe School of Astana by NIS",
     'xp.2m': "Астана · мектепті күрделі жөндеу",
-    'xp.2a': "International Steppe School of Astana by NIS: мектепті күрделі жөндеу, интерьерлер"
+    'xp.2a': "International Steppe School of Astana by NIS: мектепті күрделі жөндеу, интерьерлер",
+    'xp.3t': "Ет өңдеу зауыты",
+    'xp.3m': "Индустриялық парк · дроннан көрініс",
+    'xp.3a': "Индустриялық парктегі ет өңдеу зауыты, дроннан көрініс"
   };
 
   var WA_PREFIX = {
