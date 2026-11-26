@@ -601,11 +601,6 @@ body:not(.edit) .ph,body:not(.edit) .ph-line,body:not(.edit) .creds{display:none
 @media(prefers-reduced-motion:reduce){.bld-track{height:auto}}
 @media(orientation:landscape) and (max-height:520px){.bld-track{height:auto}}
 
-/* ===== v11: video scrubbed by scroll ===== */
-.scrub-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
-.scrub-on .scrub-video{opacity:1}
-.scrub-on .bld-fig img{opacity:0!important}
-.scrub-on .bld-hud{z-index:3}
 
 /* ===== v12: project tiles ===== */
 .proj-tiles{display:grid;gap:12px}
@@ -638,3 +633,8 @@ body:not(.edit) .ph,body:not(.edit) .ph-line,body:not(.edit) .creds{display:none
 .proj-tile{aspect-ratio:1/1}
 @media(min-width:720px){.proj-tile{aspect-ratio:1/1}}
 .proj-tile::after{background:linear-gradient(0deg,rgba(22,14,36,.88) 0%,rgba(22,14,36,.55) 18%,rgba(22,14,36,0) 36%)}
+
+/* v36: long Kazakh labels in the stage panel must not overlap the text */
+@media(max-width:719px){html[lang="kk"] .st-det p{grid-template-columns:6.4em 1fr;padding-block:5px}html[lang="kk"] .st-det i{letter-spacing:.02em}}
+@media(min-width:980px){html[lang="kk"] .st-det p{grid-template-columns:9.4em 1fr}html[lang="kk"] .st-det i{letter-spacing:.04em}}
+@media(max-width:719px){html[lang="kk"] .bld-fig{max-height:24.5svh}html[lang="kk"] .st-det p{line-height:1.25;padding-block:4px}html[lang="kk"] .bld .st-list li b{margin-bottom:3px}html[lang="kk"] .st-bar{margin:8px 0 4px}html[lang="kk"] .bld-cta{margin-top:6px}}

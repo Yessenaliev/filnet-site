@@ -54,6 +54,7 @@ ru = set_head(SRC, URL + 'ru/')
 for attr in ['href="css/', 'src="js/', 'src="assets/', 'data-src="assets/', 'data-lb="assets/',
              'poster="assets/', 'href="privacy.html']:
     ru = ru.replace(attr, attr.replace('="', '="../', 1))
+ru = re.sub(r'srcset="[^"]*"', lambda m: m.group(0).replace('assets/', '../assets/'), ru)
 
 # --- казахская страница: index.html ---
 kk = SRC
